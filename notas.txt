@@ -1,0 +1,8 @@
+-Crud con node JS y mongo
+-Que funcione por consola
+-Validaciones en el back (expresiones regulares, validacion con todos los tipos de datos)
+-Despliegue en los servidores(configuracion, instalacion, seguridad)
+
+
+-Investigar express
+-Implementar node con express y node con typeScript
