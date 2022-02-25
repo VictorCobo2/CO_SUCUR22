@@ -3,7 +3,7 @@ POST http://localhost:9000/api/createsucur HTTP/1.1
 Content-Type: application/json
 
  {
-     "codsucur": "CO",
+     "codsucur": "MX",
      "descripsucur": "Una descripcion",
      "almacensucur":"00005",
      "codciusucur":{"codciud": 1, "dptciusucur": 1, "ciuciusucur": 1},
@@ -20,7 +20,7 @@ GET http://localhost:9000/api/getdata HTTP/1.1
 GET http://localhost:9000/api/getdata/6218f755479cf2554d977143 HTTP/1.1
 
 ###
-PUT http://localhost:9000/api/putdata/6218f755479cf2554d977143 HTTP/1.1
+PUT http://localhost:9000/api/putdata/621902c677a911e0bf3a3d16 HTTP/1.1
 Content-Type: application/json
 
  {
@@ -31,7 +31,7 @@ Content-Type: application/json
      "telsucur": 3186877835,
      "direccsucur": "Calle 29 #3-56",
      "activosucur": "S",
-     "anomessucur": 1
+     "anomessucur": 10000
  }
 
 ###
