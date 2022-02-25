@@ -1,55 +1,74 @@
 const mongoose = require('mongoose');
 
  const sucurSchema = mongoose.Schema({
-     cod_sucur: {
+     codsucur: {
          type: String,
          require: true
      },
-     descrip_sucur: {
-         type: String,
-         required: true
-     },
-     almacen_sucur: {
-         type: String,
-         required: true
-     },
-     cod_ciu_sucur: {
-         type: Object,
-         required: true
-     },
-     tel_sucur: {
-         type: Number,
-         required: true
-     },
-     direcc_sucur: {
-         type: String,
-         required: true
-     },
-     activo_sucur: {
-         type: String,
-         required: true
-     },
-     anomes_sucur: {
-         type: Number,
-         required: true
-     }
- }, {versionKey: false});
+    //  descripsucur: {
+    //      type: String,
+    //      required: true
+    //  },
+    //  almacensucur: {
+    //      type: String,
+    //      required: true
+    //  },
+    //  codciusucur: {
+    //      type: Object,
+    //      required: true
+     //},
+    //  telsucur: {
+    //      type: Number,
+    //      required: true
+    //  },
+    //  direccsucur: {
+    //      type: String,
+    //      required: true
+    //  },
+    //  activosucur: {
+    //      type: String,
+    //      required: true
+    //  },
+    //  anomessucur: {
+    //      type: Number,
+    //      required: true
+    //  }
+ });
 
 
  const userSchema = mongoose.Schema({
-    cod_sucur: {
+    codsucur: {
         type: String,
         required: true,
       },
-    descrip_sucur: {
-        type: Number,
-        required: true
-      },
-    almacen_sucur: {
+    descripsucur: {
         type: String,
         required: true
-    
-      }
-  });
+    },
+    almacensucur:{
+        type:String,
+        required: true
+    },
+    codciusucur:{
+        type: Object,
+        required: true
+    },
+    telsucur:{
+        type: Number,
+        required: true
+    },
+    direccsucur:{
+        type: String,
+        required: true
+    },
+    activosucur:{
+        type: String,
+        required: true
+    },
+    anomessucur:{
+        type: Number,
+        required: true
+    }
+  },{versionKey: false});
 
  module.exports = mongoose.model('COL_SUCUR22', userSchema);
