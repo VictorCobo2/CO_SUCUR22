@@ -1,13 +1,14 @@
 const express = require('express');
 const sucurSchema = require("../models/sucur");
-
+const { validateCreate } = require('../validators/sucur')
 const router = express.Router();
 
 
 
 
 //Crear datos
-router.post("/createsucur", (req, res) => {
+router.post("/createsucur",validateCreate, (req, res) => {
+    
     const sucur = sucurSchema(req.body);
     sucur.save()
     .then((data)=> res.json(data))
