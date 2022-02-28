@@ -10,6 +10,7 @@ const router = express.Router();
 router.post("/createsucur",validateCreate, (req, res) => {
     
     const sucur = sucurSchema(req.body);
+    console.log(sucur.descripsucur)
     sucur.save()
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
@@ -33,7 +34,7 @@ router.get("/getdata/:id", (req, res) => {
     .catch((error)=> res.json({mensaje: error}))
 })
 //Editar datos
-router.put("/putdata/:id", (req, res) => {
+router.put("/putdata/:id",validateCreate, (req, res) => {
     const { id }=req.params;
     const {codsucur, descripsucur,almacensucur,codciusucur, telsucur, direccsucur, activosucur, anomessucur} = req.body
     sucurSchema
