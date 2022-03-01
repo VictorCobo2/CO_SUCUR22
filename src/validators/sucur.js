@@ -40,13 +40,19 @@ const validateCreate = [
     }
 ]
 
-function llenar_espacios(dato,cantidad){
-    //let descripsucur = dato
-        for(let i=dato.length; i<cantidad; i++){
-            dato = dato.concat(' ')
-        }
-        return dato
+// function llenar_espacios(dato,cantidad){
+//         for(let i=dato.length; i<cantidad; i++){
+//             dato = dato.concat(' ')
+//         }
+//         return dato
+// }
+const llenar_espacios = (dato, cantidad) =>{
+    for(let i=dato.length; i<cantidad; i++){
+        dato = dato.concat(' ')
+    }
+    return dato
 }
+    
 
 
 

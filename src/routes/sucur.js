@@ -34,7 +34,7 @@ router.get("/getdata/:id", (req, res) => {
     .catch((error)=> res.json({mensaje: error}))
 })
 //Editar datos
-router.put("/putdata/:id",validateCreate, (req, res) => {
+router.put("/putdata/:id",validateCreate,(req, res) => {
     const { id }=req.params;
     const {codsucur, descripsucur,almacensucur,codciusucur, telsucur, direccsucur, activosucur, anomessucur} = req.body
     sucurSchema
