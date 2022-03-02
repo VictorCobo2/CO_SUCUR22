@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
         required: true
     },
     codciusucur:{
-        type: Object,
+        type: Array,
         required: true
     },
     telsucur:{

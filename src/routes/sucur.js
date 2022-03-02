@@ -33,6 +33,15 @@ router.get("/getdata/:id", (req, res) => {
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })
+//buscar por cod Sucur
+router.get("/getdatacod/:codsucur", (req, res) => {
+    console.log(req.params)
+    const { codsucur }=req.params;
+    sucurSchema
+    .find(codsucur)
+    .then((data)=> res.json(data))
+    .catch((error)=> res.json({mensaje: error}))
+})
 //Editar datos
 router.put("/putdata/:id",validateCreate,(req, res) => {
     const { id }=req.params;

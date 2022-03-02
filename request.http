@@ -3,14 +3,14 @@ POST http://localhost:9000/api/createsucur HTTP/1.1
 Content-Type: application/json
 
  {
-     "codsucur": "xdddd",
+     "codsucur": "xd",
      "descripsucur": "1",
-     "almacensucur":"00005",
+     "almacensucur":"0005",
      "codciusucur":{"codciud": 1, "dptciusucur": 1, "ciuciusucur": 1},
      "telsucur": 3186877835,
      "direccsucur": "Calle 29 #3-56",
      "activosucur": "S",
-     "anomessucur": 1
+     "anomessucur": ""
  }
 
 ###
@@ -36,3 +36,6 @@ Content-Type: application/json
 
 ###
 DELETE  http://localhost:9000/api/deletedata/6218f755479cf2554d977143 HTTP/1.1
+
+### Buscar por codsucur
+GET http://localhost:9000/api/getdatacod/xd HTTP/1.1
