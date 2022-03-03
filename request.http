@@ -3,35 +3,35 @@ POST http://localhost:9000/api/createsucur HTTP/1.1
 Content-Type: application/json
 
  {
-     "codsucur": "xd",
-     "descripsucur": "1",
-     "almacensucur":"0005",
-     "codciusucur":{"codciud": 1, "dptciusucur": 1, "ciuciusucur": 1},
-     "telsucur": 3186877835,
-     "direccsucur": "Calle 29 #3-56",
-     "activosucur": "S",
-     "anomessucur": ""
+    "ubicacion:": "Datos",
+    "direct": "edit",
+    "subdirect":"00005",
+    "codCiu":{"dptCiu": "05", "ciuCiu": "000"},
+    "nombreCiu":{"nombre1Ciu": "ANTIOQUIA", "nombre2Ciu": "   "},
+    "paisCiu": "169",
+    "actbarriosCiu": " ",
+    "incremCiu": 0
  }
 
 ###
 GET http://localhost:9000/api/getdata HTTP/1.1
 
 ###
-GET http://localhost:9000/api/getdata/621d38c7d672a29dbe0de23e HTTP/1.1
+GET http://localhost:9000/api/getdata/622123764558bede433e3d63 HTTP/1.1
 
 ###
-PUT http://localhost:9000/api/putdata/621d38c7d672a29dbe0de23e HTTP/1.1
+PUT http://localhost:9000/api/putdata/622123764558bede433e3d63 HTTP/1.1
 Content-Type: application/json
 
  {
-     "codsucur": "xd",
-     "descripsucur": "edit",
-     "almacensucur":"00005",
-     "codciusucur":{"codciud": 1, "dptciusucur": 1, "ciuciusucur": 1},
-     "telsucur": 3186877835,
-     "direccsucur": "Calle 29 #3-56",
-     "activosucur": "S",
-     "anomessucur": 10000
+    "ubicacion:": "Datos editttt",
+    "direct": "edit",
+    "subdirect":"00005",
+    "codCiu":{"dptCiu": "05", "ciuCiu": "000"},
+    "nombreCiu":{"nombre1Ciu": "ANTIOQUIA", "nombre2Ciu": "   "},
+    "paisCiu": "169",
+    "actbarriosCiu": " ",
+    "incremCiu": 0
  }
 
 ###

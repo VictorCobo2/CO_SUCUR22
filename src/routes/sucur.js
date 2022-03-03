@@ -7,11 +7,11 @@ const router = express.Router();
 
 
 //Crear datos
-router.post("/createsucur",validateCreate, (req, res) => {
+router.post("/createsucur", (req, res) => {
     
-    const sucur = sucurSchema(req.body);
-    console.log(sucur.descripsucur)
-    sucur.save()
+    const ciudad2 = sucurSchema(req.body);
+    ciudad2
+    .save()
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })
@@ -43,11 +43,11 @@ router.get("/getdatacod/:codsucur", (req, res) => {
     .catch((error)=> res.json({mensaje: error}))
 })
 //Editar datos
-router.put("/putdata/:id",validateCreate,(req, res) => {
+router.put("/putdata/:id",(req, res) => {
     const { id }=req.params;
-    const {codsucur, descripsucur,almacensucur,codciusucur, telsucur, direccsucur, activosucur, anomessucur} = req.body
+    const {ubicacion, direct, subdirect, codCiu, nombreCiu, paisCiu, actbarriosCiu, incremCiu} = req.body
     sucurSchema
-    .updateOne({_id: id},{$set:{codsucur, descripsucur,almacensucur,codciusucur, telsucur, direccsucur, activosucur, anomessucur}})
+    .updateOne({_id: id},{$set:{ubicacion, direct, subdirect, codCiu, nombreCiu, paisCiu, actbarriosCiu, incremCiu}})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })

@@ -1,38 +1,72 @@
 const mongoose = require('mongoose');
+//  const sucurSchema = mongoose.Schema({
+//     codsucur: {
+//         type: String,
+//         required: true,
+//       },
+//     descripsucur: {
+//         type: String,
+//         required: true
+//     },
+//     almacensucur:{
+//         type:String,
+//         required: true
+//     },
+//     codciusucur:{
+//         type: Array,
+//         required: true
+//     },
+//     telsucur:{
+//         type: String,
+//         required: true
+//     },
+//     direccsucur:{
+//         type: String,
+//         required: true
+//     },
+//     activosucur:{
+//         type: String,
+//         required: true
+//     },
+//     anomessucur:{
+//         type: String,
+//         required: true
+//     }
+//   },{versionKey: false});
 
- const sucurSchema = mongoose.Schema({
-    codsucur: {
+const sucurSchema = mongoose.Schema({
+    ubicacion: {
         type: String,
-        required: true,
+        //required: true,
       },
-    descripsucur: {
+    direct: {
         type: String,
         required: true
     },
-    almacensucur:{
+    subdirect:{
         type:String,
         required: true
     },
-    codciusucur:{
-        type: Array,
+    codCiu:{
+        type: Object,
         required: true
     },
-    telsucur:{
-        type: Number,
+    nombreCiu:{
+        type: Object,
         required: true
     },
-    direccsucur:{
+    paisCiu:{
         type: String,
         required: true
     },
-    activosucur:{
+    actbarriosCiu:{
         type: String,
         required: true
     },
-    anomessucur:{
+    incremCiu:{
         type: Number,
         required: true
     }
   },{versionKey: false});
 
- module.exports = mongoose.model('COL_SUCUR22', sucurSchema);
+ module.exports = mongoose.model('ciudades', sucurSchema);
