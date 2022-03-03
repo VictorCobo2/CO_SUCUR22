@@ -4,7 +4,7 @@ let descripsucur;
 let direccsucur;
 
 const validateCreate = [
-    check('descripsucur')
+    check('ubicacion')
     .exists()
     .not()
     .isEmpty()
@@ -18,13 +18,13 @@ const validateCreate = [
             descripsucur = value
             return true
         }
-    }),check('direccsucur')
+    }),check('direct')
     .exists()
     .not()
     .isEmpty()
     .custom((value, {req})=>{
-        if(value.length < 25){
-            direccsucur = llenar_espacios(value,25)
+        if(value.length < 10){
+            direccsucur = llenar_espacios(value,10)
             return true
         } if(value.length > 25){
             return false
@@ -32,67 +32,56 @@ const validateCreate = [
             direccsucur = value
             return true
         }
-    }),check('codsucur')
+    }),check('codsubdirectsucur')
     .exists()
     .not()
     .isEmpty()
     .custom((value, {req})=>{
-        if(value.length > 2){
+        const num =10
+        if(value.length < num){
+            direccsucur = llenar_espacios(value,num)
+            return true
+        } if(value.length > num){
             return false
-        }
-        return true
-    }),check('almacensucur')
-    .exists()
-    .not()
-    .isEmpty()
-    .custom((value, {req})=>{
-        if(value.length > 5){
-            return false
-        }
-        return true
-    }),check('telsucur')
-    .exists()
-    .not()
-    .custom((value, {req})=>{
-        const num = value.toString()
-        console.log(num.length)
-        if(num.length != 10){
-            console.log('entreeeeeeee')
+        }else if(value.length == num){
+            direccsucur = value
             return true
         }
-        return false
-    }),check('activosucur')
+    }),check('paisCiu')
     .exists()
     .not()
     .isEmpty()
-    .isString()
     .custom((value, {req})=>{
-        if(value.length > 1){
+        const num = 3
+        if(value.length < num){
+            direccsucur = llenar_espacios(value,num)
+            return true
+        } if(value.length > num){
             return false
+        }else if(value.length == num){
+            direccsucur = value
+            return true
         }
-        return true
-    }),check('anomessucur')
+    }),check('actbarriosCiu')
+    .exists()
+    .not()
+    .custom((value, {req})=>{
+        const num = 1
+        if(value.length < num){
+            direccsucur = llenar_espacios(value,num)
+            return true
+        } if(value.length > num){
+            return false
+        }else if(value.length == num){
+            direccsucur = value
+            return true
+        }
+    }),check('incremCiu')
     .exists()
     .not()
     .isEmpty()
-    .isNumeric()
-    .custom((value, {req})=>{
-        const num = value.toString()
-        if(num.length > 1){
-            return false
-        }
-        return true
-    }),check('codciusucur')
-    .exists()
-    .not()
-    .isEmpty()
-    .isObject()
-    .custom((value, {req})=>{
-        if(value.length > 5){
-            return false
-        }
-        return true
-    }),
+    .isNumber()
+    ,
     (req, res, next) =>{
         req.body.descripsucur = descripsucur
         req.body.direccsucur = direccsucur

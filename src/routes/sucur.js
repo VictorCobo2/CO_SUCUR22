@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 //Crear datos
-router.post("/createsucur", (req, res) => {
+router.post("/createsucur",validateCreate, (req, res) => {
     
     const ciudad2 = sucurSchema(req.body);
     ciudad2
