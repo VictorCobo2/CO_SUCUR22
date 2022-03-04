@@ -3,13 +3,13 @@ POST http://localhost:9000/api/createsucur HTTP/1.1
 Content-Type: application/json
 
  {
-    "ubicacion:": "Datos",
-    "direct": "edit",
+    "ubicacion": "dat",
+    "direct": "Calle 8",
     "subdirect":"00005",
     "codCiu":{"dptCiu": "05", "ciuCiu": "000"},
     "nombreCiu":{"nombre1Ciu": "ANTIOQUIA", "nombre2Ciu": "   "},
     "paisCiu": "169",
-    "actbarriosCiu": " ",
+    "actbarriosCiu": "f",
     "incremCiu": 0
  }
 
@@ -24,11 +24,11 @@ PUT http://localhost:9000/api/putdata/622123764558bede433e3d63 HTTP/1.1
 Content-Type: application/json
 
  {
-    "ubicacion:": "Datos editttt",
+    "ubicacion": "editado",
     "direct": "edit",
     "subdirect":"00005",
     "codCiu":{"dptCiu": "05", "ciuCiu": "000"},
-    "nombreCiu":{"nombre1Ciu": "ANTIOQUIA", "nombre2Ciu": "   "},
+    "nombreCiu":{"nombre1Ciu": "EDITADO", "nombre2Ciu": "   "},
     "paisCiu": "169",
     "actbarriosCiu": " ",
     "incremCiu": 0

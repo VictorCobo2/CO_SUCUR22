@@ -1,6 +1,6 @@
 const express = require('express');
-const sucurSchema = require("../models/sucur");
-const { validateCreate } = require('../validators/sucur')
+const sucurSchema = require("../models/ciudad");
+const { validateCreate } = require('../validators/ciudad')
 const router = express.Router();
 
 
@@ -9,8 +9,8 @@ const router = express.Router();
 //Crear datos
 router.post("/createsucur",validateCreate, (req, res) => {
     
-    const ciudad2 = sucurSchema(req.body);
-    ciudad2
+    const ciudad = sucurSchema(req.body);
+    ciudad
     .save()
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
@@ -43,7 +43,7 @@ router.get("/getdatacod/:codsucur", (req, res) => {
     .catch((error)=> res.json({mensaje: error}))
 })
 //Editar datos
-router.put("/putdata/:id",(req, res) => {
+router.put("/putdata/:id",validateCreate,(req, res) => {
     const { id }=req.params;
     const {ubicacion, direct, subdirect, codCiu, nombreCiu, paisCiu, actbarriosCiu, incremCiu} = req.body
     sucurSchema

@@ -1,72 +1,50 @@
-const mongoose = require('mongoose');
-//  const sucurSchema = mongoose.Schema({
-//     codsucur: {
-//         type: String,
-//         required: true,
-//       },
-//     descripsucur: {
-//         type: String,
-//         required: true
-//     },
-//     almacensucur:{
-//         type:String,
-//         required: true
-//     },
-//     codciusucur:{
-//         type: Array,
-//         required: true
-//     },
-//     telsucur:{
-//         type: String,
-//         required: true
-//     },
-//     direccsucur:{
-//         type: String,
-//         required: true
-//     },
-//     activosucur:{
-//         type: String,
-//         required: true
-//     },
-//     anomessucur:{
-//         type: String,
-//         required: true
-//     }
-//   },{versionKey: false});
+const mongoose = require ('mongoose');
 
 const sucurSchema = mongoose.Schema({
     ubicacion: {
-        type: String,
-        //required: true,
-      },
-    direct: {
-        type: String,
-        required: true
-    },
-    subdirect:{
         type:String,
         required: true
     },
-    codCiu:{
-        type: Object,
+    direct: {
+        type:String,
         required: true
     },
-    nombreCiu:{
-        type: Object,
+    subdirect: {
+        type:String,
         required: true
     },
-    paisCiu:{
-        type: String,
+    codSucur: {
+        type:String,
         required: true
     },
-    actbarriosCiu:{
-        type: String,
+    descripSucur: {
+        type:Object,
         required: true
     },
-    incremCiu:{
-        type: Number,
+    almacenSucur: {
+        type:String,
         required: true
-    }
-  },{versionKey: false});
+    },
+    codciuSucur: {
+        type:Object,
+        required: true
+    },
+    telSucur: {
+        type:String,
+        required: true
+    },
+    direccSucur: {
+        type:String,
+        required: true
+    },
+    activoSucur: {
+        type:String,
+        required: true
+    },
+    fevtacontadoSucur: {
+        type:String,
+        required: true
+    },
+})
 
- module.exports = mongoose.model('ciudades', sucurSchema);
+module.exports = mongoose.model('sucurs', sucurSchema)

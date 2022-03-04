@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
-const sucurRoute = require("./routes/sucur")
+const sucurRoute = require("./routes/ciudad")
 
 const app =  express();
 const port = process.env.PORT || 9000
