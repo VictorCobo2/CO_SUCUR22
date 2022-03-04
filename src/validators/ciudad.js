@@ -6,16 +6,16 @@ let direct, subdirect, paisCiu, actbarriosCiu;
 const validateCreate = [
     check('ubicacion')
         .custom((value, {req})=>{
-            console.log("custom")
+            
             if(value.length < 20){
-                console.log("llenar")
+                
                 ubicacion = llenar_espacios(value,20)
                 return true
             } if(value.length > 20){
-                console.log("false")
+                
                 return false
             }else if(value.length == 20){
-                console.log("true")
+                
                 ubicacion = value
                 return true
             }

@@ -4,7 +4,7 @@ const { validateCreate } = require('../validators/ciudad')
 const router = express.Router();
 
 
-
+ 
 
 //Crear datos
 router.post("/createsucur",validateCreate, (req, res) => {
@@ -34,11 +34,12 @@ router.get("/getdata/:id", (req, res) => {
     .catch((error)=> res.json({mensaje: error}))
 })
 //buscar por cod Sucur
-router.get("/getdatacod/:codsucur", (req, res) => {
-    console.log(req.params)
-    const { codsucur }=req.params;
+router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res) => {
+    console.log(req.params.dptCiu)
+    const { dptCiu }=req.params.dptCiu;
+    const { ciuCiu }= req.params.ciuCiu;
     sucurSchema
-    .find(codsucur)
+    .findOne({ $and:[{codCiu:dptCiu, }]})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })

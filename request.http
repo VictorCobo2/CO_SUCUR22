@@ -6,21 +6,21 @@ Content-Type: application/json
     "ubicacion": "dat",
     "direct": "Calle 8",
     "subdirect":"00005",
-    "codCiu":{"dptCiu": "05", "ciuCiu": "000"},
+    "codCiu":{"dptCiu": "", "ciuCiu": "000"},
     "nombreCiu":{"nombre1Ciu": "ANTIOQUIA", "nombre2Ciu": "   "},
     "paisCiu": "169",
-    "actbarriosCiu": "f",
-    "incremCiu": 0
+    
+    "incremCiu": "F"
  }
 
 ###
 GET http://localhost:9000/api/getdata HTTP/1.1
 
 ###
-GET http://localhost:9000/api/getdata/622123764558bede433e3d63 HTTP/1.1
+GET http://localhost:9000/api/getdata/62225ed0e4b11c0918ab491b HTTP/1.1
 
 ###
-PUT http://localhost:9000/api/putdata/622123764558bede433e3d63 HTTP/1.1
+PUT http://localhost:9000/api/putdata/62225ed0e4b11c0918ab491b HTTP/1.1
 Content-Type: application/json
 
  {
@@ -38,4 +38,4 @@ Content-Type: application/json
 DELETE  http://localhost:9000/api/deletedata/6218f755479cf2554d977143 HTTP/1.1
 
 ### Buscar por codsucur
-GET http://localhost:9000/api/getdatacod/xd HTTP/1.1
+GET http://localhost:9000/api/getdatacod/05/030 HTTP/1.1
