@@ -40,5 +40,8 @@ DELETE  http://localhost:9000/api/deletedata/6218f755479cf2554d977143 HTTP/1.1
 ### Buscar por codsucur
 GET http://localhost:9000/api/getdatasub/00005 HTTP/1.1
 
-###
-GET http://localhost:9000/api/getdatacod/05/031 HTTP/1.1
+### 
+GET http://localhost:9000/api/getdatacod/05/000 HTTP/1.1
+
+### eliminar por codCiu
+DELETE  http://localhost:9000/api/deletedatacod/05/000 HTTP/1.1

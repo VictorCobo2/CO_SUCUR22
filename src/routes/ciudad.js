@@ -49,7 +49,7 @@ router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res)=>{
     const dptCiu = req.params.dptCiu;
     const ciuCiu = req.params.ciuCiu;
     sucurSchema
-    .findOne({codCiu:[{dptCiu, ciuCiu}]})
+    .find({codCiu:[{dptCiu, ciuCiu}]})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })
@@ -77,7 +77,7 @@ router.delete("/deletedatacod/:dptCiu/:ciuCiu", (req, res) => {
     const  dptCiu =req.params.dptCiu;
     const  ciuCiu =req.params.ciuCiu;
     sucurSchema
-    .remove({codCiu:[{}]})
+    .remove({codCiu:[{dptCiu,ciuCiu}]})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })
