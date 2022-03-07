@@ -17,7 +17,7 @@ Content-Type: application/json
 GET http://localhost:9000/api/getdata HTTP/1.1
 
 ###
-GET http://localhost:9000/api/getdata/62225ed0e4b11c0918ab491b HTTP/1.1
+GET http://localhost:9000/api/getdata/622123764558bede433e3d62 HTTP/1.1
 
 ###
 PUT http://localhost:9000/api/putdata/62225ed0e4b11c0918ab491b HTTP/1.1
@@ -38,4 +38,7 @@ Content-Type: application/json
 DELETE  http://localhost:9000/api/deletedata/6218f755479cf2554d977143 HTTP/1.1
 
 ### Buscar por codsucur
-GET http://localhost:9000/api/getdatacod/05/030 HTTP/1.1
+GET http://localhost:9000/api/getdatasub/00005 HTTP/1.1
+
+###
+GET http://localhost:9000/api/getdatacod/05/031 HTTP/1.1

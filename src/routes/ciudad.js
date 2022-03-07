@@ -32,14 +32,24 @@ router.get("/getdata/:id", (req, res) => {
     .findById(id)
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
+    console.log(res)
 })
-//buscar por cod Sucur
-router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res) => {
-    console.log(req.params.dptCiu)
-    const { dptCiu }=req.params.dptCiu;
-    const { ciuCiu }= req.params.ciuCiu;
+//buscar por cod Subdirect
+router.get("/getdatasub/:subdirect", (req, res) => {
+    const subdirect =req.params.subdirect;
     sucurSchema
-    .findOne({ $and:[{codCiu:dptCiu, }]})
+    .findOne({subdirect:subdirect})
+    //.findOne({ $and:[{paisCiu:dptCiu, }]})
+    .then((data)=> res.json(data))
+    .catch((error)=> res.json({mensaje: error}))
+})
+
+//Buscra con codCiu
+router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res)=>{
+    const dptCiu = req.params.dptCiu;
+    const ciuCiu = req.params.ciuCiu;
+    sucurSchema
+    .findOne({codCiu:[{dptCiu, ciuCiu}]})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })
@@ -58,6 +68,16 @@ router.delete("/deletedata/:id", (req, res) => {
     const { id }=req.params;
     sucurSchema
     .remove({_id: id})
+    .then((data)=> res.json(data))
+    .catch((error)=> res.json({mensaje: error}))
+})
+
+//eliminar con codCiu
+router.delete("/deletedatacod/:dptCiu/:ciuCiu", (req, res) => {
+    const  dptCiu =req.params.dptCiu;
+    const  ciuCiu =req.params.ciuCiu;
+    sucurSchema
+    .remove({codCiu:[{}]})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })
