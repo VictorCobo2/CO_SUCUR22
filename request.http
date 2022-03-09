@@ -9,7 +9,7 @@ Content-Type: application/json
     "codCiu":{"dptCiu": "", "ciuCiu": "000"},
     "nombreCiu":{"nombre1Ciu": "ANTIOQUIA", "nombre2Ciu": "   "},
     "paisCiu": "169",
-    
+    "actbarriosCiu": "l",
     "incremCiu": "F"
  }
 

@@ -1,42 +1,9 @@
 const mongoose = require('mongoose');
-//  const ciudadSchema = mongoose.Schema({
-//     codsucur: {
-//         type: String,
-//         required: true,
-//       },
-//     descripsucur: {
-//         type: String,
-//         required: true
-//     },
-//     almacensucur:{
-//         type:String,
-//         required: true
-//     },
-//     codciusucur:{
-//         type: Array,
-//         required: true
-//     },
-//     telsucur:{
-//         type: String,
-//         required: true
-//     },
-//     direccsucur:{
-//         type: String,
-//         required: true
-//     },
-//     activosucur:{
-//         type: String,
-//         required: true
-//     },
-//     anomessucur:{
-//         type: String,
-//         required: true
-//     }
-//   },{versionKey: false});
-
+console.clear()
 const ciudadSchema = mongoose.Schema({
     ubicacion: {
         type: String,
+        value: " ",
         required: true,
       },
     direct: {

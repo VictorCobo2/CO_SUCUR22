@@ -1,43 +1,34 @@
 const express = require('express');
-const sucurSchema = require("../models/ciudad");
+const ciudadSchema = require("../models/ciudad");
 const { validateCreate } = require('../validators/ciudad')
 const router = express.Router();
+
 
 
  
 
 //Crear datos
 router.post("/createsucur",validateCreate, (req, res) => {
-    
-    const ciudad = sucurSchema(req.body);
-    ciudad
-    .save()
-    .then((data)=> res.json(data))
-    .catch((error)=> res.json({mensaje: error}))
+    const ciudad = ciudadSchema(req.body);
+    ciudad.save().then((data)=> res.json(data)).catch((error)=> res.json({mensaje: error}))
 })
 
 //obtener datos
 router.get("/getdata", (req, res) => {
-    sucurSchema
-    .find()
-    .then((data)=> res.json(data))
-    .catch((error)=> res.json({mensaje: error}))
+    ciudadSchema.find().then((data)=> res.json(data)).catch((error)=> res.json({mensaje: error}))
 })
 
 
-//obtener un dato
+//obtener un dato por id
 router.get("/getdata/:id", (req, res) => {
     const { id }=req.params;
-    sucurSchema
-    .findById(id)
-    .then((data)=> res.json(data))
-    .catch((error)=> res.json({mensaje: error}))
-    console.log(res)
+    ciudadSchema.findById(id).then((data)=> res.json(data)).catch((error)=> res.json({mensaje: error}))
 })
+
 //buscar por cod Subdirect
 router.get("/getdatasub/:subdirect", (req, res) => {
     const subdirect =req.params.subdirect;
-    sucurSchema
+    ciudadSchema
     .findOne({subdirect:subdirect})
     //.findOne({ $and:[{paisCiu:dptCiu, }]})
     .then((data)=> res.json(data))
@@ -48,16 +39,28 @@ router.get("/getdatasub/:subdirect", (req, res) => {
 router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res)=>{
     const dptCiu = req.params.dptCiu;
     const ciuCiu = req.params.ciuCiu;
-    sucurSchema
+    ciudadSchema
     .find({codCiu:[{dptCiu, ciuCiu}]})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })
+
+//Editar datos por codCiu
+router.put("/putdatacod/:dptCiu/:ciuCiu",validateCreate,(req, res) => {
+    const dptCiu = req.params.dptCiu;
+    const ciuCiu = req.params.ciuCiu;
+    const {ubicacion, direct, subdirect, codCiu, nombreCiu, paisCiu, actbarriosCiu, incremCiu} = req.body
+    ciudadSchema
+    .updateOne({codCiu:[{dptCiu, ciuCiu}]},{$set:{ubicacion, direct, subdirect, codCiu, nombreCiu, paisCiu, actbarriosCiu, incremCiu}})
+    .then((data)=> res.json(data))
+    .catch((error)=> res.json({mensaje: error}))
+})
+
 //Editar datos
 router.put("/putdata/:id",validateCreate,(req, res) => {
     const { id }=req.params;
     const {ubicacion, direct, subdirect, codCiu, nombreCiu, paisCiu, actbarriosCiu, incremCiu} = req.body
-    sucurSchema
+    ciudadSchema
     .updateOne({_id: id},{$set:{ubicacion, direct, subdirect, codCiu, nombreCiu, paisCiu, actbarriosCiu, incremCiu}})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
@@ -66,7 +69,7 @@ router.put("/putdata/:id",validateCreate,(req, res) => {
 //eliminar
 router.delete("/deletedata/:id", (req, res) => {
     const { id }=req.params;
-    sucurSchema
+    ciudadSchema
     .remove({_id: id})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
@@ -76,7 +79,7 @@ router.delete("/deletedata/:id", (req, res) => {
 router.delete("/deletedatacod/:dptCiu/:ciuCiu", (req, res) => {
     const  dptCiu =req.params.dptCiu;
     const  ciuCiu =req.params.ciuCiu;
-    sucurSchema
+    ciudadSchema
     .remove({codCiu:[{dptCiu,ciuCiu}]})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
