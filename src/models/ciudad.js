@@ -3,7 +3,6 @@ console.clear()
 const ciudadSchema = mongoose.Schema({
     ubicacion: {
         type: String,
-        value: " ",
         required: true,
       },
     direct: {
@@ -14,23 +13,23 @@ const ciudadSchema = mongoose.Schema({
         type:String,
         required: true
     },
-    codCiu:{
+    cod:{
+    type: Object,
+        required: true
+    },
+    nombre:{
         type: Object,
         required: true
     },
-    nombreCiu:{
-        type: Object,
-        required: true
-    },
-    paisCiu:{
+    pais:{
         type: String,
         required: true
     },
-    actbarriosCiu:{
+    actbarrios:{
         type: String,
         required: true
     },
-    incremCiu:{
+    increm:{
         type: Number,
         required: true
     }

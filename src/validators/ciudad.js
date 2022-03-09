@@ -23,21 +23,21 @@ const validateCreate = [
     // .isLength({max:10})
 
     
-    ,check('paisCiu')
+    ,check('pais')
     .exists()
     .not()
     .isEmpty()
     .isLength({max:3})
 
 
-    ,check('actbarriosCiu')
+    ,check('actbarrios')
     .custom((value, {req})=>{
         actbarriosCiu = validarEspacio(value)
         return true
     })
     
 
-    ,check('incremCiu')
+    ,check('increm')
     .exists()
     .not()
     .isEmpty()

@@ -36,22 +36,22 @@ router.get("/getdatasub/:subdirect", (req, res) => {
 })
 
 //Buscra con codCiu
-router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res)=>{
-    const dptCiu = req.params.dptCiu;
-    const ciuCiu = req.params.ciuCiu;
+router.get("/getdatacod/:dpt/:ciu", (req, res)=>{
+    const dpt = req.params.dpt;
+    const ciu = req.params.ciu;
     ciudadSchema
-    .find({codCiu:[{dptCiu, ciuCiu}]})
+    .find({cod:[{dpt, ciu}]})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })
 
 //Editar datos por codCiu
-router.put("/putdatacod/:dptCiu/:ciuCiu",validateCreate,(req, res) => {
-    const dptCiu = req.params.dptCiu;
-    const ciuCiu = req.params.ciuCiu;
-    const {ubicacion, direct, subdirect, codCiu, nombreCiu, paisCiu, actbarriosCiu, incremCiu} = req.body
+router.put("/putdatacod/:dpt/:ciu",validateCreate,(req, res) => {
+    const dpt = req.params.dpt;
+    const ciu = req.params.ciu;
+    const {ubicacion, direct, subdirect, cod, nombre, pais, actbarrios, increm} = req.body
     ciudadSchema
-    .updateOne({codCiu:[{dptCiu, ciuCiu}]},{$set:{ubicacion, direct, subdirect, codCiu, nombreCiu, paisCiu, actbarriosCiu, incremCiu}})
+    .updateOne({codCiu:[{dptCiu, ciuCiu}]},{$set:{ubicacion, direct, subdirect, cod, nombre, pais, actbarrios, increm}})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })
