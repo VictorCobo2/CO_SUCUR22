@@ -10,7 +10,7 @@ const router = express.Router();
 //Crear datos
 router.post("/createsucur",validateCreate, (req, res) => {
     const ciudad = ciudadSchema(req.body);
-    ciudad.save().then((data)=> res.json(data)).catch((error)=> res.json({mensaje: error}))
+    ciudad.save().then((data)=> res.json(data)).catch((error)=> res.json({mensaje: error} ))
 })
 
 //obtener datos

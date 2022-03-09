@@ -51,6 +51,9 @@ const validateCreate = [
     (req, res, next) =>{
         req.body.actbarriosCiu = actbarriosCiu
         req.body.ubicacion = ubicacion
+
+        console.log("----------")
+        console.log(req.erros)
         validateResult(req, res, next)
     }
 ]
