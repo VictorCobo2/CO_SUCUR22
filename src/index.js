@@ -18,4 +18,4 @@ app.get("/", (req, res) => {
 mongoose.connect(process.env.MONGODB_URI).then(()=> console.log("Se conecto"))
 .catch((error)=> console.log(error))
 
-app.listen(port, () => console.log('Esuchando en el puerto: ', port))
+app.listen(port, () => console.log('Esuchando en el puertoooo: ', port))
