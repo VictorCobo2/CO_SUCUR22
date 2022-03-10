@@ -1,4 +1,6 @@
 const express = require('express');
+const { check } = require('express-validator');
+
 const ciudadSchema = require("../models/ciudad");
 const { validateCreate } = require('../validators/ciudad')
 const router = express.Router();
@@ -8,14 +10,35 @@ const router = express.Router();
  
 
 //Crear datos
-router.post("/createsucur",validateCreate, (req, res) => {
+router.post("/createsucur",validateCreate,
+check('cod').custom(value => {
+    const dpt = value.dpt;
+    const ciu = value.ciu
+    return ciudadSchema.find({cod:[{dpt, ciu}]}).then(sucur => {
+        console.log("Este es el sucur")
+        console.log(sucur.length)
+        if (sucur.length > 0){
+            console.log("Entre al if")
+            throw new Error('ya existe perro');
+        }
+    });
+}), (req, res) => {
     const ciudad = ciudadSchema(req.body);
-    ciudad.save().then((data)=> res.json(data)).catch((error)=> res.json({mensaje: error} ))
+    
+    ciudad.save()
+    .then((data)=> res.json(data))
+    .catch((error)=> {
+        console.log(error)
+        console.log("<<<<")
+        res.json({mensaje: error} )
+    })
 })
 
 //obtener datos
 router.get("/getdata", (req, res) => {
-    ciudadSchema.find().then((data)=> res.json(data)).catch((error)=> res.json({mensaje: error}))
+    ciudadSchema.find()
+    .then((data)=> res.json(data))
+    .catch((error)=> res.json({mensaje: error}))
 })
 
 
@@ -76,11 +99,11 @@ router.delete("/deletedata/:id", (req, res) => {
 })
 
 //eliminar con codCiu
-router.delete("/deletedatacod/:dptCiu/:ciuCiu", (req, res) => {
-    const  dptCiu =req.params.dptCiu;
-    const  ciuCiu =req.params.ciuCiu;
+router.delete("/deletedatacod/:dpt/:ciu", (req, res) => {
+    const  dpt =req.params.dpt;
+    const  ciu =req.params.ciu;
     ciudadSchema
-    .remove({codCiu:[{dptCiu,ciuCiu}]})
+    .remove({cod:[{dpt,ciu}]})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })
