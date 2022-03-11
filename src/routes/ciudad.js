@@ -10,14 +10,14 @@ const router = express.Router();
  
 
 //Crear datos
-router.post("/createsucur",validateCreate,
+router.post("/createciudad",validateCreate,
 check('cod').custom(value => {
     const dpt = value.dpt;
     const ciu = value.ciu
-    return ciudadSchema.find({cod:[{dpt, ciu}]}).then(sucur => {
-        console.log("Este es el sucur")
-        console.log(sucur.length)
-        if (sucur.length > 0){
+    return ciudadSchema.find({cod:[{dpt, ciu}]}).then(ciudad => {
+        console.log("Este es el ciudad")
+        console.log(ciudad.length)
+        if (ciudad.length > 0){
             console.log("Entre al if")
             throw new Error('ya existe perro');
         }
