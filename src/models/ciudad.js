@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 console.clear()
-mongoose.pluralize(null)
+mongoose.pluralize(null) //Con este evitamos que mongo ponga una S al final
 const ciudadSchema = mongoose.Schema({
     ubicacion: {
         type: String,
@@ -34,6 +34,6 @@ const ciudadSchema = mongoose.Schema({
         type: Number,
         required: true
     }
-  },{versionKey: false},);
+  },{versionKey: false},); //Con este evitamos que mongo agrege una variable llamada __V
 
  module.exports = mongoose.model('ciudad', ciudadSchema);

@@ -8,16 +8,16 @@ const router = express.Router();
 
 //Crear datos
 router.post("/createciudad",validateCreate,
-check('cod').custom(value => {
+check('cod').custom(value => { //---------------
     const dpt = value.dpt;
     const ciu = value.ciu
     return ciudadSchema.find({cod:[{dpt, ciu}]}).then(ciudad => {
         if (ciudad.length > 0){
             throw new Error('Ya existe una ciudad con ese id')
         }
-    });
+    });//-------------- Validacion de que la ciudad no exista antes de crearla
 }), (req, res) => {
-    const erros = validationResult(req)
+    const erros = validationResult(req) //Metodo de express-Validator
     if (!erros.isEmpty()) {
         return res.status(422).json({ erros: erros.array() })
     }
