@@ -16,13 +16,7 @@ const validateCreate = [
     check('direct','subdirect')
     .exists()
     .isLength({max:10})
-    
-
-    // ,check('subdirect')
-    // .exists()
-    // .isLength({max:10})
-
-    
+     
     ,check('pais')
     .exists()
     .not()

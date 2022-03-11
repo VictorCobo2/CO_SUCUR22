@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 console.clear()
+mongoose.pluralize(null)
 const ciudadSchema = mongoose.Schema({
     ubicacion: {
         type: String,
@@ -33,6 +34,6 @@ const ciudadSchema = mongoose.Schema({
         type: Number,
         required: true
     }
-  },{versionKey: false});
+  },{versionKey: false},);
 
- module.exports = mongoose.model('ciudades', ciudadSchema);
+ module.exports = mongoose.model('ciudad', ciudadSchema);

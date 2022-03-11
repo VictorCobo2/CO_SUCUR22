@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
     res.send("Funciona la api")
 })
 
-mongoose.connect(process.env.MONGODB_URI).then(()=> console.log("Se conecto"))
+mongoose.connect(process.env.MONGODB_URI).then(()=> console.log("Conectado a mongo"))
 .catch((error)=> console.log(error))
 
-app.listen(port, () => console.log('Esuchando en el puertoooo: ', port))
+app.listen(port, () => console.log('Esuchando en el puerto: ', port))
