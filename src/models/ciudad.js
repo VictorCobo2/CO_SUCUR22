@@ -34,6 +34,6 @@ const ciudadSchema = mongoose.Schema({
         type: Number,
         required: true
     }
-  },{versionKey: false},); //Con este evitamos que mongo agrege una variable llamada __V
+  },{versionKey: false}); //Con este evitamos que mongo agrege una variable llamada __V
 
  module.exports = mongoose.model('ciudad', ciudadSchema);

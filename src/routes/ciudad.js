@@ -2,7 +2,7 @@ const express = require('express');
 const { check, validationResult } = require('express-validator');
 
 const ciudadSchema = require("../models/ciudad");
-const { validateCreate } = require('../validators/ciudad')
+const { validateCreate, ValidateEdit } = require('../validators/ciudad')
 const router = express.Router();
  
 
@@ -59,12 +59,12 @@ router.get("/getdatacod/:dpt/:ciu", (req, res)=>{
 
 
 //Editar datos por codCiu
-router.put("/putdatacod/:dpt/:ciu",validateCreate,(req, res) => {
+router.put("/putdatacod/:dpt/:ciu",ValidateEdit,(req, res) => {
     const dpt = req.params.dpt;
     const ciu = req.params.ciu;
     const {ubicacion, direct, subdirect, cod, nombre, pais, actbarrios, increm} = req.body
     ciudadSchema
-    .updateOne({codCiu:[{dpt, ciu}]},{$set:{ubicacion, direct, subdirect, cod, nombre, pais, actbarrios, increm}})
+    .updateOne({cod:[{dpt, ciu}]},{$set:{ubicacion, direct, subdirect, cod, nombre, pais, actbarrios, increm}})
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
 })

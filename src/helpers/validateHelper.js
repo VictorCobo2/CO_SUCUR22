@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+
 const validateResult = (req, res, next)=>{
     try {
         validationResult(req).throw()
@@ -7,5 +8,7 @@ const validateResult = (req, res, next)=>{
         res.status(404)
         res.send({erros: error.array()})
     }
-}
+};
+
 module.exports = { validateResult }
+

@@ -1,14 +1,15 @@
 const { check } = require('express-validator');
 const { validateResult } = require('../helpers/validateHelper')
+const { validarExistencia } = require('../validators/global')
 
-let ubicacion ,direct, subdirect, paisCiu, actbarriosCiu;
+let ubicacion ,direct, subdirect, paisCiu, actbarrios;
 
 const validateCreate = [
 
     check('ubicacion')
     .isLength({max:20})
     .custom((value, {req})=>{
-        ubicacion = validarEspacio(value)
+        ubicacion = validarExistencia(value)
         return true
     }),
 
@@ -26,7 +27,7 @@ const validateCreate = [
 
     ,check('actbarrios')
     .custom((value, {req})=>{
-        actbarriosCiu = validarEspacio(value)
+        actbarrios = validarExistencia(value)
         return true
     })
     
@@ -38,22 +39,52 @@ const validateCreate = [
     .isNumeric()
     .isLength({max:1}),
 
-
-    // ,check('codCiu')
-    // .isObject(),
-
     (req, res, next) =>{
-        req.body.actbarriosCiu = actbarriosCiu
+        req.body.actbarrios = actbarrios
         req.body.ubicacion = ubicacion
         validateResult(req, res, next)
     }
 ]
 
-function validarEspacio(valor){
-    if(valor){
-        return valor
-    }else{
-        return " "
+const ValidateEdit = [
+    check('ubicacion')
+    .isLength({max:20})
+    .custom((value, {req})=>{
+        ubicacion = validarExistencia(value)
+        return true
+    }),
+
+
+    check('direct','subdirect')
+    .isLength({max:10})
+     
+    ,check('pais')
+    .isLength({max:3})
+
+
+    ,check('actbarrios')
+    .custom((value, {req})=>{
+        actbarrios = validarExistencia(value)
+        return true
+    })
+    
+
+    ,check('increm')
+    //.isNumeric()
+    .isLength({max:1}),
+
+    (req, res, next) =>{
+        req.body.actbarrios = actbarrios
+        req.body.ubicacion = ubicacion
+        validateResult(req, res, next)
     }
-}
-module.exports = {validateCreate}
+]
+
+// function validarExistencia(valor){
+//     if(valor){
+//         return valor
+//     }else{
+//         return " "
+//     }
+// }
+module.exports = {validateCreate, ValidateEdit}
