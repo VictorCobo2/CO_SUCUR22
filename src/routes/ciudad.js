@@ -4,10 +4,11 @@ const { check, validationResult } = require('express-validator');
 const ciudadSchema = require("../models/ciudad");
 const { validateCreate, ValidateEdit } = require('../validators/ciudad')
 const router = express.Router();
- 
+
+const datos = undefined
 
 //Crear datos
-router.post("/createciudad",validateCreate,
+router.post("/createciudad",
 check('cod').custom(value => { //---------------
     const dpt = value.dpt;
     const ciu = value.ciu
@@ -29,12 +30,23 @@ check('cod').custom(value => { //---------------
      })
 })
 
+//Crear datos 222222
+router.post("/createciudad2", validateCreate,(req, res) => {
+    const ciudad = ciudadSchema(req.body);
+    ciudad.save()
+    .then((data)=> res.json(data))
+    .catch((error)=> {
+         res.json({mensaje: error} )
+     })
+})
 
 //obtener datos
 router.get("/getdata", (req, res) => {
     ciudadSchema.find()
     .then((data)=> res.json(data))
     .catch((error)=> res.json({mensaje: error}))
+
+    //console.log(data)
 })
 
 
@@ -57,12 +69,26 @@ router.get("/getdatacod/:dpt/:ciu", (req, res)=>{
     .catch((error)=> res.json({mensaje: error}))
 })
 
+//Buscra con cod DPT
+router.get("/getdatadpt/:dpt", (req, res)=>{
+    console.log('Entreee')
+    const dpt = req.params.dpt;
+    const ciu = '';
+    console.log(dpt,ciu)
+    ciudadSchema
+    .find( {cod:[{dpt}]} )
+    .then((data)=> res.json(data))
+    .catch((error)=>  res.json({mensaje: error}))
+})
+
 
 //Editar datos por codCiu
-router.put("/putdatacod/:dpt/:ciu",ValidateEdit,(req, res) => {
+router.put("/putdatacod/:dpt/:ciu",(req, res) => {
     const dpt = req.params.dpt;
     const ciu = req.params.ciu;
     const {ubicacion, direct, subdirect, cod, nombre, pais, actbarrios, increm} = req.body
+
+    console.log(res)
     ciudadSchema
     .updateOne({cod:[{dpt, ciu}]},{$set:{ubicacion, direct, subdirect, cod, nombre, pais, actbarrios, increm}})
     .then((data)=> res.json(data))

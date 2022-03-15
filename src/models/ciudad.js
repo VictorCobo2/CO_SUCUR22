@@ -4,7 +4,8 @@ mongoose.pluralize(null) //Con este evitamos que mongo ponga una S al final
 const ciudadSchema = mongoose.Schema({
     ubicacion: {
         type: String,
-        required: true,
+        //required: true,
+        default: ""
       },
     direct: {
         type: String,
@@ -15,8 +16,9 @@ const ciudadSchema = mongoose.Schema({
         required: true
     },
     cod:{
-    type: Object,
-        required: true
+        type: Object,
+        required: true,
+        unique: true  
     },
     nombre:{
         type: Object,
@@ -28,7 +30,8 @@ const ciudadSchema = mongoose.Schema({
     },
     actbarrios:{
         type: String,
-        required: true
+        //required: true
+        default: "" //El valor por defecto sera este, si no se envia nada.
     },
     increm:{
         type: Number,

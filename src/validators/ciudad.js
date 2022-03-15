@@ -8,13 +8,10 @@ const validateCreate = [
 
     check('ubicacion')
     .isLength({max:20})
-    .custom((value, {req})=>{
-        ubicacion = validarExistencia(value)
-        return true
-    }),
+    
 
 
-    check('direct','subdirect')
+    ,check('direct','subdirect')
     .exists()
     .isLength({max:10})
      
@@ -24,13 +21,10 @@ const validateCreate = [
     .isEmpty()
     .isLength({max:3})
 
-
-    ,check('actbarrios')
-    .custom((value, {req})=>{
-        actbarrios = validarExistencia(value)
-        return true
-    })
-    
+    ,check('cod')
+    .exists()
+    .isLength({min: 2})
+    .isObject()
 
     ,check('increm')
     .exists()
@@ -47,12 +41,8 @@ const validateCreate = [
 ]
 
 const ValidateEdit = [
-    check('ubicacion')
-    .isLength({max:20})
-    .custom((value, {req})=>{
-        ubicacion = validarExistencia(value)
-        return true
-    }),
+     check('ubicacion')
+     .isLength({max:20}),
 
 
     check('direct','subdirect')
@@ -61,12 +51,6 @@ const ValidateEdit = [
     ,check('pais')
     .isLength({max:3})
 
-
-    ,check('actbarrios')
-    .custom((value, {req})=>{
-        actbarrios = validarExistencia(value)
-        return true
-    })
     
 
     ,check('increm')
@@ -80,11 +64,5 @@ const ValidateEdit = [
     }
 ]
 
-// function validarExistencia(valor){
-//     if(valor){
-//         return valor
-//     }else{
-//         return " "
-//     }
-// }
+
 module.exports = {validateCreate, ValidateEdit}
