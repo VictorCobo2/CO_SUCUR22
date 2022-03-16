@@ -7,7 +7,7 @@ const router = express.Router();
 
 //Crear datos------------------------
 router.post(
-  "/createciudad",
+  "/createciudad",validateCreate,
   check("codCiu").custom((value) => {
     //---------------
     const dptCiu = value.dptCiu;
@@ -64,11 +64,11 @@ router.get("/getdata/:id", (req, res) => {
 });
 
 //Buscra con codCiu------------------------
-router.get("/getdatacod/:dpt/:ciu", (req, res) => {
-  const dpt = req.params.dpt;
-  const ciu = req.params.ciu;
+router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res) => {
+  const dptCiu = req.params.dptCiu;
+  const ciuCiu = req.params.ciuCiu;
   ciudadSchema
-    .find({ cod: [{ dpt, ciu }] })
+    .find({ codCiu: [{ dptCiu, ciuCiu }] })
     .then((data) => res.json(data))
     .catch((error) => res.json({ mensaje: error }));
 });
