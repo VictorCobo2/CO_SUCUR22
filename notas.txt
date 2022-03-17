@@ -8,3 +8,21 @@
 -Implementar node con express y node con typeScript
 
 ahvVIyAOnAfMdjAM
+
+ABR
+AGT
+CIE
+CONTROL
+DIC
+ENE
+ENVIOS
+FEB
+JUL
+JUN
+MAR
+MAY
+NOMINA
+NOV
+OCT
+PRE
+SEP

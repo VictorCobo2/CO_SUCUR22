@@ -5,14 +5,12 @@ const { validarExistencia } = require('./global')
 const datosDirect=["ABR","AGT","CIE","CONTROL","DIC","ENE","ENVIOS","FEB","JUL","JUN","MAR","MAY","NOMINA","NOV","OCT","PRE","SEP"]
 
 let ubicacion ,direct, subdirect, paisCiu, actbarrios;
-console.log("Esteeeeeee")
-console.log(datosDirect.includes("ABR"))
 
 const validateCreate = [
 
     check('ubicacion')
     .isLength({max:20})
-    
+    .withMessage('No puede contener mas de 20 caracteres')
 
 
     ,check('subdirect')
@@ -40,6 +38,7 @@ const validateCreate = [
     .not()
     .isEmpty()
     .isNumeric()
+    .withMessage("57")
     .isLength({max:1}),
 
     (req, res, next) =>{

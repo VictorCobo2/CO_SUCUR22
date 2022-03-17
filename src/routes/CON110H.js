@@ -16,7 +16,7 @@ router.post(
       .find({ codCiu: [{ dptCiu, ciuCiu }] })
       .then((ciudad) => {
         if (ciudad.length > 0) {
-          throw new Error("Ya existe una ciudad con ese id");
+          throw new Error("00");
         }
       }); //-------------- Validacion de que la ciudad no exista antes de crearla
   }),
@@ -49,7 +49,7 @@ router.post("/createciudad2", validateCreate, (req, res) => {
 //obtener datos------------------------
 router.get("/getdata", (req, res) => {
   ciudadSchema
-    .find().sort({$natural:-1}) //el .sort es para organizar algun dato de manera ascendente(1) o descendente(-2), $natural es para organizar de del mas nuevo al mas antiguo
+    .find().sort({$natural:-1}) //el .sort es para organizar algun dato de manera ascendente(1) o descendente(-1), $natural es para organizar de del mas nuevo al mas antiguo
     .then((data) => res.json(data))
     .catch((error) => res.json({ mensaje: error }));
 });
@@ -69,7 +69,15 @@ router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res) => {
   const ciuCiu = req.params.ciuCiu;
   ciudadSchema
     .find({ codCiu: [{ dptCiu, ciuCiu }] })
-    .then((data) => res.json(data))
+    .then((data) => {
+      if(!data){
+        console.log("Entre perroooooo")
+        res.send("Error 01")
+      }else{
+        console.log(data)
+        res.send(data)
+      }
+    })
     .catch((error) => res.json({ mensaje: error }));
 });
 
