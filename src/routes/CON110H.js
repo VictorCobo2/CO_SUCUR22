@@ -12,8 +12,9 @@ router.post(
     //---------------
     const dptCiu = value.dptCiu;
     const ciuCiu = value.ciuCiu;
+    const datos = {dptCiu,ciuCiu}
     return ciudadSchema
-      .find({ codCiu: [{ dptCiu, ciuCiu }] })
+      .find({ codCiu: datos })
       .then((ciudad) => {
         if (ciudad.length > 0) {
           throw new Error("00");
@@ -63,21 +64,15 @@ router.get("/getdata/:id", (req, res) => {
     .catch((error) => res.json({ mensaje: error }));
 });
 
-//Buscra con codCiu------------------------
+//Buscar con codCiu------------------------
 router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res) => {
   const dptCiu = req.params.dptCiu;
   const ciuCiu = req.params.ciuCiu;
+  const datos = {dptCiu,ciuCiu}
+  console.log(datos) 
   ciudadSchema
-    .find({ codCiu: [{ dptCiu, ciuCiu }] })
-    .then((data) => {
-      if(!data){
-        console.log("Entre perroooooo")
-        res.send("Error 01")
-      }else{
-        console.log(data)
-        res.send(data)
-      }
-    })
+    .find({ "codCiu": datos })
+    .then((data) => res.send(data))
     .catch((error) => res.json({ mensaje: error }));
 });
 
@@ -109,9 +104,10 @@ router.get("/getdataciu/:ciuCiu", (req, res) => {
 });
 
 //Editar datos por codCiu
-router.put("/putdatacod/:dpt/:ciu", (req, res) => {
-  const dpt = req.params.dpt;
-  const ciu = req.params.ciu;
+router.put("/putdatacod/:dptCiu/:ciuCiu", (req, res) => {
+  const dptCiu = req.params.dptCiu;
+  const ciuCiu = req.params.ciuCiu;
+  const datos = {dptCiu,ciuCiu}
   const {
     ubicacion,
     direct,
@@ -122,10 +118,9 @@ router.put("/putdatacod/:dpt/:ciu", (req, res) => {
     actbarrios,
     increm,
   } = req.body;
-  console.log(res);
   ciudadSchema
     .updateOne(
-      { cod: [{ dpt, ciu }] },
+      { "codCiu": datos },
       {
         $set: {
           ubicacion,
@@ -145,11 +140,12 @@ router.put("/putdatacod/:dpt/:ciu", (req, res) => {
 
 
 //eliminar con codCiu
-router.delete("/deletedatacod/:dpt/:ciu", (req, res) => {
-  const dpt = req.params.dpt;
-  const ciu = req.params.ciu;
+router.delete("/deletedatacod/:dptCiu/:ciuCiu", (req, res) => {
+  const dptCiu = req.params.dptCiu;
+  const ciuCiu = req.params.ciuCiu;
+  const datos = {dptCiu,ciuCiu}
   ciudadSchema
-    .remove({ cod: [{ dpt, ciu }] })
+    .remove({ "codCiu": datos })
     .then((data) => res.json(data))
     .catch((error) => res.json({ mensaje: error }));
 });
