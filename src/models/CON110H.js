@@ -10,14 +10,12 @@ const ciudadSchema = mongoose.Schema(
       default: "",
     },
     direct: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     subdirect: {
-        type: String,
-        index: true,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
     },
     codCiu: {
       dptCiu: {
