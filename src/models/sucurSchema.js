@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+mongoose.pluralize(null);
+
 const sucurSchema = mongoose.Schema(
   {
     ubicacion: {
@@ -19,7 +21,7 @@ const sucurSchema = mongoose.Schema(
       required: true,
     },
     descripcion: {
-      type: String,
+      type: Object,
       required: true
     },
     almacen: {
@@ -42,16 +44,12 @@ const sucurSchema = mongoose.Schema(
      
     },
     telefono: {
-      type: Object,
-      required: true,
 
         indicaTel: {
           type: String,
-          required: true
         },
         numeroTel: {
           type: String,
-          required: true
         }
 
     },

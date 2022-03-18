@@ -7,19 +7,18 @@ const router = express.Router();
 
 //Crear datos------------------------
 router.post(
-  "/createciudad",validateCreate,
+  "/createciudad",
+  validateCreate,
   //---------------------------------- Validacion de que la ciudad no exista antes de crearla
   check("codCiu").custom((value) => {
     const dptCiu = value.dptCiu;
     const ciuCiu = value.ciuCiu;
-    const datos = {dptCiu,ciuCiu}
-    return ciudadSchema
-      .find({ codCiu: datos })
-      .then((ciudad) => {
-        if (ciudad.length > 0) {
-          throw new Error("00");
-        }
-      }); //---------------------------------------------------------------
+    const datos = { dptCiu, ciuCiu };
+    return ciudadSchema.find({ codCiu: datos }).then((ciudad) => {
+      if (ciudad.length > 0) {
+        throw new Error("00");
+      }
+    }); //---------------------------------------------------------------
   }),
   (req, res) => {
     const erros = validationResult(req); //Metodo de express-Validator
@@ -50,7 +49,8 @@ router.post("/createciudad2", validateCreate, (req, res) => {
 //obtener datos------------------------
 router.get("/getdata", (req, res) => {
   ciudadSchema
-    .find().sort({$natural:-1}) //el .sort es para organizar algun dato de manera ascendente(1) o descendente(-1), $natural es para organizar de del mas nuevo al mas antiguo
+    .find()
+    .sort({ $natural: -1 }) //el .sort es para organizar algun dato de manera ascendente(1) o descendente(-1), $natural es para organizar de del mas nuevo al mas antiguo
     .then((data) => res.json(data))
     .catch((error) => res.json({ mensaje: error }));
 });
@@ -68,22 +68,22 @@ router.get("/getdata/:id", (req, res) => {
 router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res) => {
   const dptCiu = req.params.dptCiu;
   const ciuCiu = req.params.ciuCiu;
-  const datos = {dptCiu,ciuCiu}
-  console.log(datos) 
+  const datos = { dptCiu, ciuCiu };
+  console.log(datos);
   ciudadSchema
-    .find({ "codCiu": datos })
+    .find({ codCiu: datos })
     .then((data) => res.send(data))
     .catch((error) => res.json({ mensaje: error }));
 });
 
 //Bucar por codigo de pais -----------------------------------------
 router.get("/getdatapais/:pais", (req, res) => {
-    const pais = req.params.pais;
-    ciudadSchema
-      .find({ pais })
-      .then((data) => res.json(data))
-      .catch((error) => res.json({ mensaje: error }));
-  });
+  const pais = req.params.pais;
+  ciudadSchema
+    .find({ pais })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ mensaje: error }));
+});
 
 //Buscar con cod Dpt-----------------------
 router.get("/getdatadpt/:dptCiu", (req, res) => {
@@ -107,7 +107,7 @@ router.get("/getdataciu/:ciuCiu", (req, res) => {
 router.put("/putdatacod/:dptCiu/:ciuCiu", (req, res) => {
   const dptCiu = req.params.dptCiu;
   const ciuCiu = req.params.ciuCiu;
-  const datos = {dptCiu,ciuCiu}
+  const datos = { dptCiu, ciuCiu };
   const {
     ubicacion,
     direct,
@@ -120,7 +120,7 @@ router.put("/putdatacod/:dptCiu/:ciuCiu", (req, res) => {
   } = req.body;
   ciudadSchema
     .updateOne(
-      { "codCiu": datos },
+      { codCiu: datos },
       {
         $set: {
           ubicacion,
@@ -138,14 +138,13 @@ router.put("/putdatacod/:dptCiu/:ciuCiu", (req, res) => {
     .catch((error) => res.json({ mensaje: error }));
 });
 
-
 //eliminar con codCiu
 router.delete("/deletedatacod/:dptCiu/:ciuCiu", (req, res) => {
   const dptCiu = req.params.dptCiu;
   const ciuCiu = req.params.ciuCiu;
-  const datos = {dptCiu,ciuCiu}
+  const datos = { dptCiu, ciuCiu };
   ciudadSchema
-    .remove({ "codCiu": datos })
+    .remove({ codCiu: datos })
     .then((data) => res.json(data))
     .catch((error) => res.json({ mensaje: error }));
 });

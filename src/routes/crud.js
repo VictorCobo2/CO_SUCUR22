@@ -3,32 +3,18 @@ const sucurSchema = require("../models/sucurSchema");
 const { check, validationResult } = require("express-validator");
 const router = express.Router();
 
+const { validateCreate } = require("../validators/validarSucur");
+
 // create sucur
-router.post("/Sucur", (req, res) => {
-  const sucur = sucurSchema(req.body);
-
-  // validacion de codSucur
-
-  // termina validacion de codSucur
-
-  sucur
-    .save()
-    .then((data) => res.json({ data }))
-    .catch((error) => res.json({ message: error }));
-});
 
 router.post(
-  "/createsucur",
-  check("codSucur").custom((value) => {
-    console.log("llegue", value);
-    const codSucur = value;
-    console.log(value);
-    return sucurSchema.find({ codSucur: value }).then((sucur) => {
-      console.log("Este ", sucur);
+  "/createsucur", validateCreate,
+  check("codigo").custom((value) => {
+    return sucurSchema.find({ codigo: value }).then((sucur) => {
       if (sucur.length > 0) {
         throw new Error("00");
       }
-    }); //-------------- Validacion de que la ciudad no exista antes de crearla
+    }); //-------------- Validacion de que el codSucur no exista antes de crearla.
   }),
   (req, res) => {
     const erros = validationResult(req); //Metodo de express-Validator
