@@ -8,8 +8,8 @@ const router = express.Router();
 //Crear datos------------------------
 router.post(
   "/createciudad",validateCreate,
+  //---------------------------------- Validacion de que la ciudad no exista antes de crearla
   check("codCiu").custom((value) => {
-    //---------------
     const dptCiu = value.dptCiu;
     const ciuCiu = value.ciuCiu;
     const datos = {dptCiu,ciuCiu}
@@ -19,7 +19,7 @@ router.post(
         if (ciudad.length > 0) {
           throw new Error("00");
         }
-      }); //-------------- Validacion de que la ciudad no exista antes de crearla
+      }); //---------------------------------------------------------------
   }),
   (req, res) => {
     const erros = validationResult(req); //Metodo de express-Validator

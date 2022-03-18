@@ -2,7 +2,7 @@ const { check } = require('express-validator');
 const { validateResult } = require('../helpers/validateHelper')
 const { validarExistencia } = require('./global')
 
-const datosDirect=["ABR","AGT","CIE","CONTROL","DIC","ENE","ENVIOS","FEB","JUL","JUN","MAR","MAY","NOMINA","NOV","OCT","PRE","SEP"]
+const datosDirect=["ABR","AGT","CIE","CONTROL","DIC","ENE","ENVIOS","FEB","JUL","JUN","MAR","MAY","NOMINA","NOV","OCT","PRE","SEP"," "]
 
 let ubicacion ,direct, subdirect, paisCiu, actbarrios;
 
