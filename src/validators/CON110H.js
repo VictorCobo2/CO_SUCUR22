@@ -4,7 +4,7 @@ const { validarExistencia } = require('./global')
 
 const datosDirect=["ABR","AGT","CIE","CONTROL","DIC","ENE","ENVIOS","FEB","JUL","JUN","MAR","MAY","NOMINA","NOV","OCT","PRE","SEP"," "]
 
-let ubicacion ,direct, subdirect, paisCiu, actbarrios;
+
 
 const validateCreate = [
 
@@ -30,8 +30,19 @@ const validateCreate = [
 
     ,check('codCiu')
     .exists()
-    .isLength({min: 2})
     .isObject()
+
+    ,check('codCiu.dptCiu')
+    .exists()
+    .custom((value)=>{
+        return value.indexOf(" ")
+    })
+
+    ,check('codCiu.ciuCiu')
+    .exists()
+    .custom((value)=>{
+        return value.indexOf(" ")
+    })
 
     ,check('increm')
     .exists()
@@ -42,8 +53,6 @@ const validateCreate = [
     .isLength({max:1}),
 
     (req, res, next) =>{
-        req.body.actbarrios = actbarrios
-        req.body.ubicacion = ubicacion
         validateResult(req, res, next)
     }
 ]
@@ -66,8 +75,6 @@ const ValidateEdit = [
     .isLength({max:1}),
 
     (req, res, next) =>{
-        req.body.actbarrios = actbarrios
-        req.body.ubicacion = ubicacion
         validateResult(req, res, next)
     }
 ]

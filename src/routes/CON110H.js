@@ -55,15 +55,6 @@ router.get("/getdata", (req, res) => {
     .catch((error) => res.json({ mensaje: error }));
 });
 
-//obtener un dato por id------------------------
-router.get("/getdata/:id", (req, res) => {
-  const { id } = req.params;
-  ciudadSchema
-    .findById(id)
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ mensaje: error }));
-});
-
 //Buscar con codCiu------------------------
 router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res) => {
   const dptCiu = req.params.dptCiu;
@@ -73,33 +64,6 @@ router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res) => {
   ciudadSchema
     .find({ "codCiu": datos })
     .then((data) => res.send(data))
-    .catch((error) => res.json({ mensaje: error }));
-});
-
-//Bucar por codigo de pais -----------------------------------------
-router.get("/getdatapais/:pais", (req, res) => {
-    const pais = req.params.pais;
-    ciudadSchema
-      .find({ pais })
-      .then((data) => res.json(data))
-      .catch((error) => res.json({ mensaje: error }));
-  });
-
-//Buscar con cod Dpt-----------------------
-router.get("/getdatadpt/:dptCiu", (req, res) => {
-  const dptCiu = req.params.dptCiu;
-  ciudadSchema
-    .find({ "codCiu.dptCiu": dptCiu })
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ mensaje: error }));
-});
-
-//Buscar con cod ciu-----------------------
-router.get("/getdataciu/:ciuCiu", (req, res) => {
-  const ciuCiu = req.params.ciuCiu;
-  ciudadSchema
-    .find({ "codCiu.ciuCiu": ciuCiu })
-    .then((data) => res.json(data))
     .catch((error) => res.json({ mensaje: error }));
 });
 
@@ -136,6 +100,18 @@ router.put("/putdatacod/:dptCiu/:ciuCiu", (req, res) => {
     )
     .then((data) => res.json(data))
     .catch((error) => res.json({ mensaje: error }));
+});
+
+
+//Buscar por cualquier variable
+
+router.get("/getdataFiltro/:dato/:idDato", (req, res) => {
+  const dat = req.params.dato;
+  const idDato = req.params.idDato;
+
+  ciudadSchema.find({[dat]:idDato})
+  .then((data) => res.json(data))
+  .catch((error) => res.json({ mensaje: error}))
 });
 
 
