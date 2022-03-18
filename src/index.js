@@ -2,7 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const sucurRoute = require("./routes/CON110H")
+const sucurRoute = require("./routes/CON110H");
+const sucurRoute2 = require('./routes/crud');
 
 const app =  express();
 const port = process.env.PORT || 9000
@@ -11,6 +12,8 @@ const port = process.env.PORT || 9000
 //middeleware
 app.use(express.json());
 app.use('/api', sucurRoute);
+app.use('/api', sucurRoute2);
+
 
 
 

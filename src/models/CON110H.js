@@ -39,7 +39,7 @@ const ciudadSchema = mongoose.Schema(
       nombre2: {
         type: String,
         default: "",
-      },
+      }
     },
     pais: {
       type: String,
