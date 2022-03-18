@@ -6,8 +6,7 @@ const { validateCreate, ValidateEdit } = require("../validators/CON110H");
 const router = express.Router();
 
 //Crear datos------------------------
-router.post(
-  "/createciudad",validateCreate,
+router.post("/createciudad",validateCreate,
   check("codCiu").custom((value) => {
     //---------------
     const dptCiu = value.dptCiu;
