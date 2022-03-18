@@ -67,8 +67,6 @@ router.get("/getdatacod/:dptCiu/:ciuCiu", (req, res) => {
     .catch((error) => res.json({ mensaje: error }));
 });
 
-<<<<<<< HEAD
-=======
 //Bucar por codigo de pais -----------------------------------------
 router.get("/getdatapais/:pais", (req, res) => {
   const pais = req.params.pais;
@@ -96,7 +94,6 @@ router.get("/getdataciu/:ciuCiu", (req, res) => {
     .catch((error) => res.json({ mensaje: error }));
 });
 
->>>>>>> f3ea88a480dc7c29a59c6290966fb6434e5440b9
 //Editar datos por codCiu
 router.put("/putdatacod/:dptCiu/:ciuCiu", (req, res) => {
   const dptCiu = req.params.dptCiu;
@@ -132,7 +129,6 @@ router.put("/putdatacod/:dptCiu/:ciuCiu", (req, res) => {
     .catch((error) => res.json({ mensaje: error }));
 });
 
-<<<<<<< HEAD
 
 //Buscar por cualquier variable
 
@@ -146,8 +142,6 @@ router.get("/getdataFiltro/:dato/:idDato", (req, res) => {
 });
 
 
-=======
->>>>>>> f3ea88a480dc7c29a59c6290966fb6434e5440b9
 //eliminar con codCiu
 router.delete("/deletedatacod/:dptCiu/:ciuCiu", (req, res) => {
   const dptCiu = req.params.dptCiu;
