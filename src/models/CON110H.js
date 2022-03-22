@@ -52,7 +52,8 @@ const ciudadSchema = mongoose.Schema(
     },
     increm: {
       type: Number,
-      required: true,
+      default: 0,
+      required: true
     },
   },
   { versionKey: false }
