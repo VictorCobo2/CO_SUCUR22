@@ -8,7 +8,8 @@ const { validateCreate } = require("../validators/validarSucur");
 // create sucur
 
 router.post(
-  "/createsucur", validateCreate,
+  "/createsucur",
+  validateCreate,
   check("codigo").custom((value) => {
     return sucurSchema.find({ codigo: value }).then((sucur) => {
       if (sucur.length > 0) {
@@ -33,7 +34,29 @@ router.post(
 router.get("/Sucur", (req, res) => {
   sucurSchema
     .find()
-    .then((data) => res.json({data}))
+    .then((data) => res.json({ data }))
+    .catch((error) => res.json({ message: error }));
+});
+
+// ejercicio atrapar todos los elementos y sumar todos los datos de un mismo tipo de cada tabla.
+router.get("/sumarCodigos", (req, res) => {
+  sucurSchema
+    .find()
+    .then((data) => {
+      var coleccion = [];
+      var suma;
+      for (let i of data) {
+        coleccion.push(i["codigo"]);
+      }
+      for (let i of coleccion) {
+        suma = i, " ", suma;
+      }
+      console.log(suma);
+      
+      console.log(coleccion.length);
+
+      res.json(data);
+    })
     .catch((error) => res.json({ message: error }));
 });
 
